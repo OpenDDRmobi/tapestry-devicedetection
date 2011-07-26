@@ -5,6 +5,7 @@
         <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
 
     <p>${message:greeting}</p>
+    <p>Your device ID is ${deviceID}</p>
 
     <p:sidebar>
 
