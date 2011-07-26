@@ -1,0 +1,96 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.altocon</groupId>
+    <artifactId>tapestry-wurfl-demo</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>tapestry-wurfl-demo Tapestry 5 Application</name>
+    <properties>
+        <tapestry-release-version>5.3.0</tapestry-release-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-core</artifactId>
+            <version>${tapestry-release-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.wurfl</groupId>
+            <artifactId>wurfl</artifactId>
+            <version>1.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging-api</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests) will fail, preventing 
+            Maven from packaging the WAR. Tapestry includes a large number of testing facilities designed for use with TestNG (http://testng.org/), 
+            so it's recommended. -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>5.12.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-test</artifactId>
+            <version>${tapestry-release-version}</version>
+            <scope>test</scope>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>commons-logging</artifactId>
+            		<groupId>commons-logging</groupId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>tapestry-wurfl-demo</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <!-- Run the application using "mvn jetty:run" -->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.16</version>
+                <configuration>
+                    <!-- Log to the console. -->
+                    <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
+                        <!-- This doesn't do anything for Jetty, but is a workaround for a Maven bug that prevents the requestLog from 
+                            being set. -->
+                        <append>true</append>
+                    </requestLog>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <!-- Adds a report detailing the components, mixins and base classes defined by this module. -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tapestry</groupId>
+                <artifactId>tapestry-component-report</artifactId>
+                <version>${tapestry-release-version}</version>
+                <configuration>
+                    <rootPackage>com.altocon.tapestry_wurfl</rootPackage>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
