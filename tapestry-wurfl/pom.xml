@@ -4,7 +4,7 @@
     <groupId>com.altocon</groupId>
     <artifactId>tapestry-wurfl</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <packaging>jara</packaging>
+    <packaging>jar</packaging>
     <name>tapestry-wurfl Tapestry 5 Module</name>
     <properties>
         <tapestry-release-version>5.3.0</tapestry-release-version>
@@ -70,6 +70,17 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <manifestEntries>
+                        <Tapestry-Module-Classes>com.altocon.tapestry_wurfl.services.TapestryWurflModule</Tapestry-Module-Classes>
+                    </manifestEntries>
+                </archive>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
     <reporting>

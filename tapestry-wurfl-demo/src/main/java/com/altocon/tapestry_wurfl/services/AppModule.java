@@ -2,20 +2,11 @@ package com.altocon.tapestry_wurfl.services;
 
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-
-import net.sourceforge.wurfl.core.Device;
-import net.sourceforge.wurfl.core.WURFLHolder;
-import net.sourceforge.wurfl.core.WURFLManager;
-
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Local;
-import org.apache.tapestry5.ioc.annotations.Scope;
-import org.apache.tapestry5.services.ApplicationGlobals;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
@@ -114,28 +105,6 @@ public class AppModule {
         // within the pipeline.
 
         configuration.add("Timing", filter);
-    }
-
-    /**
-     * This service builder extracts the wurfl device from the current request
-     * and makes it available to component classes, so you can inject it into
-     * your classes directly.
-     * @param applicationGlobals contains the needed servlet context that holds
-     * the wurfl manager
-     * @param request to get the device information from the user agent request
-     * header
-     * @return net.sourceforge.wurfl.core.Device - the wurfl device
-     */
-    @Scope(value = "perthread")
-    public static Device buildDevice(final ApplicationGlobals applicationGlobals, final HttpServletRequest request) {
-        final ServletContext servletContext = applicationGlobals.getServletContext();
-
-        final WURFLHolder wurflHolder = (WURFLHolder) servletContext
-                .getAttribute("net.sourceforge.wurfl.core.WURFLHolder");
-
-        final WURFLManager wurfl = wurflHolder.getWURFLManager();
-
-        return wurfl.getDeviceForRequest(request);
     }
 
 }
