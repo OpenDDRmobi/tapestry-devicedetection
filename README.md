@@ -3,4 +3,4 @@ tapestry-wurfl
 
 tapestry-wurfl is a module for Tapestry 5 that integrates WURFL.
 
-&copy; 2011 [altocon GmbH](http://example.com/ "go to altocon website")
+&copy; 2011 [altocon GmbH](http://www.altocon.de/ "go to altocon website")
