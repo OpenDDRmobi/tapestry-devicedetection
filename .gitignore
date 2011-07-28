@@ -8,6 +8,13 @@ target/
 .project
 .settings/
 
+# IntelliJ
+*.eml
+*.iml
+*.ipr
+*.iws
+.idea
+
 # wurfl.zip is actually needed, but it is > 1 MB, and you might want to get the
 # latest version anyway.
 # Download from http://downloads.sourceforge.net/project/wurfl/WURFL/latest/wurfl-latest.zip
